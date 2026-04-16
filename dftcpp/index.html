@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFT Spectrum Plot</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: Arial; text-align: center; padding: 20px; }
+        canvas { max-width: 800px; margin: 20px auto; }
+    </style>
+</head>
+<body>
+    <h1>Digital Signal DFT Magnitude Spectrum</h1>
+    <p>Plot from DFT of square wave (N=8)</p>
+    <canvas id="spectrumChart"></canvas>
+    <script>
+        const ctx = document.getElementById('spectrumChart').getContext('2d');
+        // Sample DFT magnitudes from run ( |X[k]| )
+        const freq = [0,1,2,3,4,5,6,7];
+        const magnitude = [4.0, 2.83, 0.0, 1.17, 0.0, 1.17, 0.0, 2.83];  // Approx from output
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: freq.map(k => `k=${k}`),
+                datasets: [{
+                    label: 'Magnitude |X[k]|',
+                    data: magnitude,
+                    borderColor: 'blue',
+                    fill: false,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                scales: {
+                    y: { beginAtZero: true, title: { display: true, text: 'Magnitude' } },
+                    x: { title: { display: true, text: 'Frequency Bin k' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

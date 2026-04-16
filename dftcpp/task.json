@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build dft",
+      "type": "shell",
+      "command": "g++",
+      "args": ["-std=c++17", "dft.cpp", "-o", "dft"],
+      "group": { "kind": "build", "isDefault": true }
+    }
+  ]
+}
